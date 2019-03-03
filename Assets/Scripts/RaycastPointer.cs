@@ -9,12 +9,13 @@ public class RaycastPointer : MonoBehaviour
 
 
     /// <summary>
-    /// On the Go controller GameObject is this RaycastPointer script. It will 
-    /// shoot a raycast forwards every update and extends the LineRenderer to 
-    /// the point it hits.
+    /// This RaycastPointer script should be on the Go controller GameObject. 
+    /// It will shoot a raycast forwards every update and extends the 
+    /// LineRenderer to the point it hits.
     /// 
-    /// It also checks if the hit object has a component called RaycastListener,
-    /// and if that is the case it will call OnHover on this component.
+    /// It also checks if the hit object has a component called RaycastListener.
+    /// If it has a RaycastListener component, it will call OnHover on this 
+    /// component.
     /// </summary>
     void LateUpdate()
     {
@@ -32,6 +33,8 @@ public class RaycastPointer : MonoBehaviour
         }
         else
         {
+            // Set the LineRenderer to render towards the horizon.
+            // 1000m in front of the Go Controller.
             Vector3 hitPosition = new Vector3(0, 0, 1000);
             lineRenderer.SetPosition(0, hitPosition);
         }

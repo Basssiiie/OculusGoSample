@@ -5,12 +5,14 @@ using UnityEngine.UI;
 
 public class FpsGraphWindow : MonoBehaviour
 {
+    // Components for the Graph Window
     [SerializeField] GameObject graphLinePrefab = null;
     [SerializeField] Text framePerSecondText = null;
     [SerializeField] RectTransform graphContainer = null;
     [SerializeField] float graphHeightMultiplier = 5f;
     [SerializeField] float graphLineDistance = 5f;
 
+    // A queue for all the graph lines
     Queue<RectTransform> graphLines = new Queue<RectTransform>();
 
     const float fpsCheckRate = 0.25f;
@@ -18,6 +20,10 @@ public class FpsGraphWindow : MonoBehaviour
     float timeSinceLastCheck = 0f;
 
     
+    /// <summary>
+    /// Update counts the frames since the last Check, and updates the frame per 
+    /// second text every check rate.
+    /// </summary>
     void Update()
     {
         // Calculate the frames per second
@@ -36,24 +42,33 @@ public class FpsGraphWindow : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Updates the FPS Text with the current frame per seconds.
+    /// </summary>
+    /// <param name="fps">The current FPS.</param>
     void SetFpsText(float fps)
     {
         framePerSecondText.text = ("FPS: " + fps);
     }
 
 
+    /// <summary>
+    /// Adds a new line to the end of the graph with a specified height.
+    /// </summary>
+    /// <param name="height">The height of the graph line.</param>
     void AddLine(float height)
     {
         bool isFull = IsGraphFull();
         RectTransform lineTransform = null;
 
+        // If the graph is full, remove the left-most line and shift the rest.
         if (isFull)
         {
             lineTransform = graphLines.Dequeue();
 
             MoveGraph();
         }
-        else
+        else // If the graph is not full, just add a new line.
         {
             lineTransform = CreateLine();
         }
@@ -64,6 +79,10 @@ public class FpsGraphWindow : MonoBehaviour
     }
 
     
+    /// <summary>
+    /// Creates a new GraphLine GameObject with the correct RectTransform.
+    /// </summary>
+    /// <returns>GameObject shaped like a GraphLine.</returns>
     RectTransform CreateLine()
     {
         GameObject lineObject = Instantiate(graphLinePrefab, graphContainer);
@@ -74,6 +93,9 @@ public class FpsGraphWindow : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Shifts every line in the Graph as far to the left as possible.
+    /// </summary>
     void MoveGraph()
     {
         float currentX = 0;
@@ -87,6 +109,10 @@ public class FpsGraphWindow : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Checks whether the graph is full or not.
+    /// </summary>
+    /// <returns>Returns true if full, or false if there is still space left.</returns>
     bool IsGraphFull()
     {
         return (graphLineDistance * graphLines.Count >= graphContainer.sizeDelta.x);

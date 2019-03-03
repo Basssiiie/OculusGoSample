@@ -16,6 +16,9 @@ public class NodeDebugWindow  : MonoBehaviour
     List<Text> nodePanels = new List<Text>();
 
     
+    /// <summary>
+    /// Update all the node panels every frame.
+    /// </summary>
     void Update()
     {
         // Update the device name, refresh rate and state
@@ -63,6 +66,10 @@ public class NodeDebugWindow  : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Creates a panel at this index.
+    /// </summary>
+    /// <param name="index">The index determines the local X position of this panel.</param>
     void CreatePanel(int index)
     {
         GameObject panelObj = Instantiate(nodePanelPrefab, panelContainer);
@@ -75,10 +82,17 @@ public class NodeDebugWindow  : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Updates the information on this TextPanel according to the information 
+    /// in the XRNodeState.
+    /// </summary>
+    /// <param name="textPanel">The Text Component which to update.</param>
+    /// <param name="node">The XRNodeState containing the information.</param>
     void UpdateInfo(Text textPanel, XRNodeState node)
     {
         StringBuilder builder = new StringBuilder(128);
 
+        // Base node information
         builder.Append("Node type: ");
         builder.AppendLine(node.nodeType.ToString());
 
@@ -88,6 +102,7 @@ public class NodeDebugWindow  : MonoBehaviour
         builder.Append("Is tracked: ");
         builder.AppendLine(node.tracked.ToString());
 
+        // Position
         builder.Append("Pos: ");
         if (node.TryGetPosition(out Vector3 position))
         {
@@ -98,6 +113,7 @@ public class NodeDebugWindow  : MonoBehaviour
             builder.AppendLine("unknown");
         }
 
+        // Rotation
         builder.Append("Rot: ");
         if (node.TryGetRotation(out Quaternion rotation))
         {
@@ -108,6 +124,7 @@ public class NodeDebugWindow  : MonoBehaviour
             builder.AppendLine("unknown");
         }
 
+        // Velocity
         builder.Append("Vel: ");
         if (node.TryGetVelocity(out Vector3 velocity))
         {
@@ -118,6 +135,7 @@ public class NodeDebugWindow  : MonoBehaviour
             builder.AppendLine("unknown");
         }
 
+        // Acceleration
         builder.Append("Acc: ");
         if (node.TryGetAcceleration(out Vector3 acceleration))
         {
@@ -128,6 +146,7 @@ public class NodeDebugWindow  : MonoBehaviour
             builder.AppendLine("unknown");
         }
 
+        // Angular velocity
         builder.Append("Ang. Vel: ");
         if (node.TryGetAngularVelocity(out Vector3 angVelocity))
         {
@@ -138,6 +157,7 @@ public class NodeDebugWindow  : MonoBehaviour
             builder.AppendLine("unknown");
         }
 
+        // Angular acceleration
         builder.Append("Ang. Acc: ");
         if (node.TryGetAngularAcceleration(out Vector3 angAcceleration))
         {
@@ -147,6 +167,8 @@ public class NodeDebugWindow  : MonoBehaviour
         {
             builder.AppendLine("unknown");
         }
+
+        // Apply the string to the text panel
         textPanel.text = builder.ToString();
     }
 }

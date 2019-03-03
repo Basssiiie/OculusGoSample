@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+
+[RequireComponent(typeof(MeshRenderer))]
 public class ColorChanger : MonoBehaviour
 {
     // The colors for the different actions.
@@ -13,6 +15,10 @@ public class ColorChanger : MonoBehaviour
     // The mesh renderer of which the color will change.
     MeshRenderer meshRenderer = null;
     
+
+    /// <summary>
+    /// This Component requires a MeshRenderer, so retrieve it.
+    /// </summary>
     void Awake()
     {
         meshRenderer = GetComponent<MeshRenderer>();

@@ -13,6 +13,9 @@ public class ConsoleWindow : MonoBehaviour
     float localY = -10;
 
 
+    /// <summary>
+    /// Subscribe to the Log event with our method and test it with a Debug.Log().
+    /// </summary>
     void Awake()
     {
         Application.logMessageReceived += OnLogMessageAdded;
@@ -21,12 +24,23 @@ public class ConsoleWindow : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Unsubscribe from the Log event when this object gets destroyed, to avoid
+    /// potential problems.
+    /// </summary>
     void OnDestroy()
     {
         Application.logMessageReceived -= OnLogMessageAdded;
     }
 
 
+    /// <summary>
+    /// Whenever a log message is added, this method is called and it adds a new 
+    /// GameObject with a Text component to the Ingame log UI.
+    /// </summary>
+    /// <param name="message">The log message.</param>
+    /// <param name="stackTrace">The stack trace is the location from where the message was sent.</param>
+    /// <param name="type">Type of log message (warning, error, log item etc.)</param>
     void OnLogMessageAdded(string message, string stackTrace, LogType type)
     {
         GameObject logItem = Instantiate(logItemPrefab, viewPortContent);
