@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 8640760813906379095}
   - component: {fileID: 8640760813906379098}
   m_Layer: 5
-  m_Name: NodeDebugWindow
+  m_Name: XrNodeWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 2446371633645151994}
   - component: {fileID: 2446371633645151995}
   m_Layer: 5
-  m_Name: FPS Window
+  m_Name: FpsGraphWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
