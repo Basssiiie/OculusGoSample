@@ -15,7 +15,10 @@ public class RaycastPointer : MonoBehaviour
     /// 
     /// It also checks if the hit object has a component called RaycastListener.
     /// If it has a RaycastListener component, it will call OnHover on this 
-    /// component.
+    /// component EVERY LateUpdate.
+    /// 
+    /// Note: I recommend building a OnHoverEnter/OnHoverExit system instead of 
+    /// this system here. This one is purely for exemplary purposes.
     /// </summary>
     void LateUpdate()
     {
