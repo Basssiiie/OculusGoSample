@@ -426,7 +426,7 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
@@ -1674,7 +1674,7 @@ PrefabInstance:
     - target: {fileID: 3436797482857893683, guid: d47a269c0f6488749a7d34eade59b75f,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000088255634
+      value: 0.0000782867
       objectReference: {fileID: 0}
     - target: {fileID: 3436797484620080126, guid: d47a269c0f6488749a7d34eade59b75f,
         type: 3}
@@ -1713,7 +1713,7 @@ PrefabInstance:
     - target: {fileID: 3525515537429992651, guid: d4ac1ae6b3e97404f920331f0f6d490c,
         type: 3}
       propertyPath: m_Name
-      value: Controller
+      value: ControllerRight
       objectReference: {fileID: 0}
     - target: {fileID: 3525515537429992650, guid: d4ac1ae6b3e97404f920331f0f6d490c,
         type: 3}
